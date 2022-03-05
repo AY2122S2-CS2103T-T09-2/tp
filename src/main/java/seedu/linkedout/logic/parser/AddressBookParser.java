@@ -1,21 +1,13 @@
 package seedu.linkedout.logic.parser;
 
-import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.linkedout.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import seedu.linkedout.logic.commands.*;
+import seedu.linkedout.logic.parser.exceptions.ParseException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.linkedout.logic.commands.AddCommand;
-import seedu.linkedout.logic.commands.ClearCommand;
-import seedu.linkedout.logic.commands.Command;
-import seedu.linkedout.logic.commands.DeleteCommand;
-import seedu.linkedout.logic.commands.EditCommand;
-import seedu.linkedout.logic.commands.ExitCommand;
-import seedu.linkedout.logic.commands.HelpCommand;
-import seedu.linkedout.logic.commands.ListCommand;
-import seedu.linkedout.logic.commands.ViewCommand;
-import seedu.linkedout.logic.parser.exceptions.ParseException;
+import static seedu.linkedout.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.linkedout.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses user input.
@@ -67,6 +59,9 @@ public class AddressBookParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
