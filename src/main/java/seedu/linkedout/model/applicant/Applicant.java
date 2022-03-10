@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.linkedout.model.job.Job;
+import seedu.linkedout.model.job.Stage;
 import seedu.linkedout.model.tag.Tag;
 
 /**
@@ -20,20 +22,23 @@ public class Applicant {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final Job job;
+    private final Stage stage;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Applicant(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Applicant(Name name, Phone phone, Email email, Job job, Stage stage, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, job, stage, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.job = job;
+        this.stage = stage;
         this.tags.addAll(tags);
     }
+
 
     public Name getName() {
         return name;
@@ -47,8 +52,12 @@ public class Applicant {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public Job getJob() {
+        return job;
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 
     /**
@@ -90,14 +99,15 @@ public class Applicant {
         return otherApplicant.getName().equals(getName())
                 && otherApplicant.getPhone().equals(getPhone())
                 && otherApplicant.getEmail().equals(getEmail())
-                && otherApplicant.getAddress().equals(getAddress())
+                && otherApplicant.getJob().equals(getJob())
+                && otherApplicant.getStage().equals(getStage())
                 && otherApplicant.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, job, stage, tags);
     }
 
     @Override
@@ -108,8 +118,10 @@ public class Applicant {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Job: ")
+                .append(getJob())
+                .append("; Stage: ")
+                .append(getStage());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
