@@ -74,7 +74,7 @@ public class SearchCommandTest {
         SearchCommand command = new SearchCommand(keywordPredicate);
         expectedModel.updateSearchedApplicantList(keywordPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getSortedApplicantList());
+        assertEquals(Collections.emptyList(), model.getFilteredApplicantList());
     }
 
     @Test
@@ -86,7 +86,7 @@ public class SearchCommandTest {
         SearchCommand command = new SearchCommand(keywordPredicate);
         expectedModel.updateSearchedApplicantList(keywordPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getSortedApplicantList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredApplicantList());
     }
 
     /**

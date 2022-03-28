@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.linkedout.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -60,6 +61,16 @@ public class UniqueApplicantList implements Iterable<Applicant> {
         internalList.remove(toFlag);
         internalList.add(flaggedApplicant);
         Collections.sort(internalList);
+    }
+
+    /**
+     * Sorts the list according to the given comparator
+     *
+     * @param comparator
+     */
+    public void sort(Comparator<Applicant> comparator) {
+        requireNonNull(comparator);
+        internalList.sort(comparator);
     }
 
     /**

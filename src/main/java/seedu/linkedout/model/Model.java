@@ -95,9 +95,6 @@ public interface Model {
      */
     void updateFilteredApplicantList(Predicate<Applicant> predicate);
 
-    /** Returns an unmodifiable view of the sorted applicant list */
-    ObservableList<Applicant> getSortedApplicantList();
-
     /**
      * Updates the filter of the sorted applicant list to sorted by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.

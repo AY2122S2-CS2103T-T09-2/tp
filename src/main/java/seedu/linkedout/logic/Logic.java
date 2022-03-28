@@ -34,7 +34,6 @@ public interface Logic {
     ObservableList<Applicant> getFilteredApplicantList();
 
     ObservableList<Applicant> getSortedApplicantList();
-
     /**
      * Returns the user prefs' linkedout app file path.
      */

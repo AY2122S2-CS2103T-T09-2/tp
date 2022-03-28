@@ -2,6 +2,7 @@ package seedu.linkedout.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -101,6 +102,10 @@ public class Linkedout implements ReadOnlyLinkedout {
     public void flagApplicant(Applicant applicant, Applicant flaggedApplicant) {
         requireNonNull(applicant);
         applicants.flag(applicant, flaggedApplicant);
+    }
+
+    public void sort(Comparator<Applicant> comparator) {
+        applicants.sort(comparator);
     }
 
     //// util methods
