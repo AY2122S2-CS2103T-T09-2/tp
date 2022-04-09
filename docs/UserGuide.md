@@ -5,9 +5,9 @@ title: User Guide
 
 ## Table of Contents
 * Table of Contents
-{:toc}
---------------------------------------------------------------------------------------------------------------------
+  {:toc}
 
+--------------------------------------------------------------------------------------------------------------------
 ## Introduction
 
 **What is LinkedOUT?**
@@ -34,7 +34,7 @@ If you would like to learn more about the technical aspects of our application i
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes:**
-Notes are placed in this guide to specify extra details on the command format and serves as a guide to assist you. 
+Notes are placed in this guide to specify extra details on the command format and serves as a guide to assist you.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -46,7 +46,6 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 </div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -61,15 +60,15 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 
 4. **For Windows:** Double-click the file to start the app.<br>
-   **For Mac:** Open up a [terminal](#https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder which contains the LinkedOUT jar file <br>
+   **For Mac:** Open up a [terminal](#https://www.maketecheasier.com/launch-terminal-current-folder-mac/) in the current folder you have installed LinkedOUT. <br>
    Then, run the following command: <br>
-   ```java -jar LinkedOUT.jar``` 
-   
+   ```java -jar LinkedOUT.jar```
+
     <br>
-   
-    LinkedOUT comes with sample data for you to experiment on. Upon starting the application, you should see the following screen:
-    
-    ![ui](images/ug/defaultui.png)
+
+   LinkedOUT comes with sample data for you to experiment on. Upon starting the application, you should see the following screen:
+
+   ![ui](images/ug/defaultui.png)
 
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -78,11 +77,11 @@ Cautions are placed in this guide to serve as warnings for certain actions.
     * **`list`** : Lists all job applicants, along with an overview of each applicant.
 
     * **`add`**`n/Bob p/99999999 e/bob@example.com j/Data Analyst r/Interview s/Pandas` : Adds an applicant named `Bob` to the list of applicants.
-    
-     * **`delete`**`1` : Deletes the first applicant from the list of applicants.
-    
+
+    * **`delete`**`1` : Deletes the first applicant from the list of applicants.
+
     * **`exit`** : Exits the app.
-    
+
     * Refer to the [Features](#features) below for details of each command.
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
@@ -95,7 +94,7 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 
 **:information_source: Notes about the command format:**<br>
 
-* The command word and prefixes for the command have to be `lower_case` (case-sensitive).<br> 
+* The command word and prefixes for the command have to be `lower_case` (case-sensitive).<br>
   Command words include `list`, `add`, `edit` etc.<br>
   Prefixes are used by commands to recognise different parts of your inputs, these include `n/`, `j/`, `r/` etc.<br>
   e.g. `edit 1 n/NAME`, this command is valid as `edit` and `n/` is `lower_case`.<br>
@@ -104,8 +103,8 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 * Words in `UPPER_CASE` are the inputs to be supplied by you.<br>
   Items in square brackets are optional. These inputs are optional because they are additional information you may
   not have yet.<br>
-  e.g. `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​`.<br> 
-  `NAME`, `PHONE_NUMBER`, `EMAIL`, `JOB`, `ROUND`, `SKILL` are inputs which can be used 
+  e.g. `add n/NAME p/PHONE_NUMBER e/EMAIL j/JOB r/ROUND [s/SKILL]…​`.<br>
+  `NAME`, `PHONE_NUMBER`, `EMAIL`, `JOB`, `ROUND`, `SKILL` are inputs which can be used
   as<br>
   `add n/John p/999 e/john@e.com j/Engineer r/Interview s/Python` with `s/Python` being optional.
 
@@ -115,13 +114,21 @@ Cautions are placed in this guide to serve as warnings for certain actions.
 * Prefixes can be in any order.<br>
   e.g. If the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If an input is expected only once in the command but you specified it multiple times,
+* If an input contains `"/"`, you may wish to avoid putting spaces after `"/"`. This is to prevent the symbol from being recognized as a prefix.<br>
+  e.g. `s/Java/Python` will be interpreted as a single skill of `Java/Python` but if you specify
+  `n/Bob s/  Java/Python`, `Java/` will be interpreted as a prefix.
+
+* If an input is expected only once in the command, but you specified it multiple times,
   only the last occurrence of the input will be taken.<br>
   e.g. If you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
+* * If a valid prefix is given twice, but you only specified the input for the last occurrence of said prefix, then the input will be accepted.
+    However, if you left the input for the last prefix empty, you will receive an error message.<br>
+    e.g. If you specify `p/ p/56785678`, `p/56785678` will be taken but if you specify `p/56785678 p/`, you will receive an error message.
+
 * Extraneous inputs for commands that do not take in inputs (such as `help`, `list` and `exit`) will be ignored.<br>
   e.g. If the command specifies `help 123`, it will be interpreted as `help`.
-  
+
 * `INDEX` refers to the index of the Applicant in the displayed list. `INDEX` must be a positive integer.<br>
   e.g. `delete 1` is valid and `delete -1` is invalid.
 
@@ -137,29 +144,18 @@ Hence, they are not actual representations of what you may see on the applicatio
 
 <br>
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about the different attributes:**
+Listed below are the different attributes that an applicant has. Some attributes have requirements which are listed below.
 
-[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
-
----
-### GUI Introduction
-![GUIintroduction](images/ug/ui-with-intro-annotation.png)
-
----
-### Prefix and Input Summary
-
-The table below illustrates the meaning of the prefixes and their respective inputs
-
-| Prefix | Meaning                  | Input       | Constraints |
-|:-------|:-------------------------|:------------|:------------|
-|   -    |                          | INDEX       | Index of applicant specified must not be more than the total number of applicants in the list. |
-| **n/** | Applicant's Name         | NAME        |
-| **p/** | Applicant's Phone Number | PHONE_NUMBER|
-| **e/** | Applicant's Email        | EMAIL       |
-| **j/** | Job Applied              | JOB         |
-| **r/** | Application Round        | ROUND       |
-| **s/** | Applicant's Skill        | SKILL       | A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed. eg. `!@#` is not allowed but `C#` is allowed.
-| **f/** | Field to sort by         | FIELD       | Field to sort list of applicant by can only be either `NAME` or `JOB` (case-insensitive).
-| **o/** | Order for sorting        | ORDER       | Order to sort list by can only be either `ASC`, ascending order or `DESC`, descending order (case-insensitive).
+* **Name**: {fill in on how cannot have name}
+* **Phone**: {fill in constraint}
+* **Email**: {constraint}
+* **Job**: {alphanumeric constraint}
+* **Round**: {alphanumeric constraint}
+* **Skill**: A single skill can be made up of 1 to 5 words. The skill cannot be completely made up of symbols. However, a mix of alphanumeric and symbols are allowed.
+  eg. `!@#` is not allowed but `C#` is allowed.
+</div>
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
@@ -172,28 +168,18 @@ Shows you a message explaining how to access the help page.
 
 Format: `help`
 
-<br>
-
-Example:
-```
-help
-```
-Sample Output:
-
-![helpcommand](images/ug/helpcommand.png)
-
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
 ---
 ### Adding an applicant: `add`
 
-Allows you to add a new applicant to the LinkedOUT application with the following information:
-* `NAME`: Applicant's name
-* `PHONE_NUMBER`: Applicant's phone number
-* `EMAIL`: Applicant's email
-* `JOB`: The job the applicant applied for
-* `ROUND`: The round of job application that the applicant is at
-* `SKILL`: Particular skills the applicant may have
+Allows you to add a new applicant to the LinkedOUT application :
+* Name
+* Phone Number
+* Email
+* The job they've applied for
+* Round of job application
+* Particular skills they may have
 
 <br>
 
@@ -241,7 +227,7 @@ Sample Output:
 ---
 ### Viewing a specific applicant : `view`
 
-Allows you to view an overview of a specific applicant, specified by an applicant's full name.
+Allows you to view a specific applicant, by inputting the applicant's **full name**.
 
 <br>
 
@@ -253,11 +239,11 @@ view NAME
   e.g. If an applicant's full name is `Steve Jobs`, and the command provided is `view Steve` then LinkedOUT will not
   display `Steve Jobs`'s details. <br>
 * The view command is case-insensitive. <br>
-  e.g `hans` will match `Hans`.
+  e.g Viewing `hans` will match an applicant with name `Hans`.
 * Only full name will be matched. <br>
-  e.g. `Han Lee` will not match `Han`.
-* Only exact full name with correct spacing will be matched. <br>
-  e.g. `HanLee` will not match `Han Lee`.
+  e.g. Viewing `Han Lee` will not match an applicant with name `Han`.
+* Only applicant with the right amount of spacing in their full name will be matched. <br>
+  e.g. Viewing `HanLee` will not match an applicant with name `Han Lee`.
 
 <br>
 
@@ -274,8 +260,8 @@ Sample Output:
 ---
 ### Searching for an applicant : `search`
 
-Allows you to search for applicants containing specified keywords, these keywords could be in **any** of the 
-applicant's name, job, round or skills.
+Allows you to search for applicants containing the input attributes and the attribute has to be an exact word. You can search for the applicant based on
+name, job, round or skills.
 
 <br>
 
@@ -283,6 +269,13 @@ Format:
 ```
 search [n/NAME]…​ [j/JOB]…​ [r/ROUND]…​ [s/SKILL]…​
 ```
+* You must provide a full match of attribute you want to search for.<br>
+  e.g. Searching `n/Hans` will match an applicant with name `Hans Lee` but will not match an applicant with name `Han`. <br>
+* The search command is case-insensitive. <br>
+  e.g Searching `n/hans` will match an applicant with name `Hans`.
+* You can search for a combination of attributes.
+  After a search command, applicants will be displayed in descending order of matched attribute and the applicant with the most number of matches is shown at the top of the list.
+  e.g Searching `n/Hans j/Engineer` will match with applicants with either name `Hans` or job `Engineer`. Applicant with both name and job matched will be displayed on the top of the list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can try searching for multiple attributes in the applicant list. Try `search n/Alex s/Java` to search for applicants with 
@@ -313,7 +306,7 @@ Format:
 addskill INDEX [s/SKILL]...
 ```
 
-* Only valid indexes with an applicant is edited. <br>
+* Only valid indexes are edited. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
@@ -334,7 +327,7 @@ Sample Output:
 ---
 ### Editing an applicant : `edit`
 
-Allows you to edit specific details of the applicant identified by the index number. The index number used corresponds to the one in the displayed applicant list. 
+Allows you to edit specific details of the applicant identified by the index number. The index number used corresponds to the one in the displayed applicant list.
 Existing values will be overwritten by the input values.
 
 <br>
@@ -344,7 +337,7 @@ Format:
 edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 ```
 
-* Only valid index with an applicant is edited. <br>
+* Only valid indexes are edited. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are edited. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
@@ -362,7 +355,7 @@ edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [j/JOB] [r/ROUND] [s/SKILL]…​
 
 Example:
 ```
-edit 1 p/91234567 e/yeoh.99@example.com s/Rust
+edit 1 p/91234567 e/yeoh.99@example.com
 ```
 Sample Output:
 
@@ -386,7 +379,7 @@ sort f/FIELD o/ORDER
 * You must provide either `NAME` or `JOB` as field to be sorted, both are case-insensitive <br>
   e.g if the field is `NAME`, then the list will be sorted based on applicant's name in the order given.
 * You must provide either `ASC` or `DESC` for order, both are case-insensitive.
-`ASC` stands for ascending and `DESC` stands for descending <br>
+  `ASC` stands for ascending and `DESC` stands for descending <br>
   e.g if the order is `ASC`, then the list will be sorted in ascending order based on the field given
 
 
@@ -414,7 +407,7 @@ Format:
 flag INDEX
 ```
 
-* Only valid index with an applicant is flagged. <br>
+* Only valid indexes are flagged. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are flagged. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
@@ -452,14 +445,14 @@ Extended Sample Output for unflagging:
 **:information_source: Flag Command Interaction with Other Commands:**
 
 * `INDEX` of applicant to be flagged/unflagged always follows the index indicated on the user interface. <br>
-e.g After executing a search, sort or view command, `flag 1` still flags/unflags the applicant at the top of the list. 
+  e.g After executing a search, sort or view command, `flag 1` still flags/unflags the applicant at the top of the list.
 * A flagged applicant acts like a pinned email, and will always be located at the top of the applicant list,
-except after search and view commands. <br>
+  except after search and view commands. <br>
   In that case, flagged applicants will be displayed according to the command's sorting order,
   and will no longer be displayed at the top.
-  * e.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order 
-  specified in the command. 
-  * e.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
+    * e.g After a sort command, flagged applicants are not displayed at the top of the list and will be displayed according to the order
+      specified in the command.
+    * e.g After a search command, applicants will be displayed in order of which applicants most satisfy the search conditions.
 
 </div>
 
@@ -477,7 +470,7 @@ Format:
 delete INDEX
 ```
 
-* Only valid index with an applicant is deleted. <br>
+* Only valid indexes are deleted. <br>
   e.g If there are only `4` applicants in the app but `5` is specified, then the intended action will not be carried out.
 * Only positive indexes are deleted. <br>
   e.g As we label our applicants incrementally starting from `1` (e.g `1, 2, 3, and so on`), an index of `-1` will not be tagged to an applicant.
@@ -599,5 +592,21 @@ If your changes to the data file makes its format invalid, LinkedOUT will discar
 
 [Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
+--------------------------------------------------------------------------------------------------------------------
+## Prefix Summary
 
+The table below illustrates the meaning of the prefixes
+
+| Prefix | Meaning               |
+|:-------|:----------------------|
+| **n/** | Name                  |
+| **p/** | Phone Number          |
+| **e/** | Email                 |
+| **j/** | Job                   |
+| **r/** | Application Round     |
+| **s/** | Skill of an applicant |
+| **f/** | Field to sort         |
+| **o/** | Order for sorting     |
+
+[Back to top <img src="images/back-to-top-icon.png" width="25px" />](#table-of-contents)
 
